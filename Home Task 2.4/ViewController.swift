@@ -19,34 +19,36 @@ class ViewController: UIViewController {
     @IBOutlet var redSlider: UISlider!
     @IBOutlet var greenSlider: UISlider!
     @IBOutlet var blueSlider: UISlider!
-    
-    
-    private var redChanel: CGFloat = 1
-    private var greenChanel: CGFloat = 1
-    private var blueChanel: CGFloat = 1
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        redSlider.value = Float.random(in: 0...255)
+        greenSlider.value = Float.random(in: 0...255)
+        blueSlider.value = Float.random(in: 0...255)
         
-
+        setupColorValues()
+        setupLabelValues()
     }
-
+    
     @IBAction func redChanelSlider() {
-        
+        setupLabelValues()
+        setupColorValues()
+    }
+}
+
+extension ViewController {
+    private func setupLabelValues() {
         redChanelLabel.text = String(format: "%.2f", redSlider.value)
         greenChanelLabel.text = String(format: "%.2f", greenSlider.value)
         blueChanelLabel.text = String(format: "%.2f", blueSlider.value)
-        
-        redChanel = CGFloat(redSlider.value)
-        greenChanel = CGFloat(greenSlider.value)
-        blueChanel = CGFloat(blueSlider.value)
-        
+    }
+    
+    private func setupColorValues() {
         transformColorView.backgroundColor = UIColor(
-            red: redChanel / 255,
-            green: greenChanel / 255,
-            blue: blueChanel / 255,
+            red: CGFloat(redSlider.value) / 255,
+            green: CGFloat(greenSlider.value) / 255,
+            blue: CGFloat(blueSlider.value) / 255,
             alpha: 1
         )
     }

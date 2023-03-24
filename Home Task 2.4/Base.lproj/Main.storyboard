@@ -150,6 +150,9 @@
                                                         <integer key="value" value="10"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="tappedRedButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="QfR-g9-P1g"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYj-04-luU">
                                                 <rect key="frame" x="0.0" y="49" width="101.66666666666667" height="34"/>
@@ -164,6 +167,9 @@
                                                         <integer key="value" value="10"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="tappedGreenButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="GLD-w6-aiQ"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wVN-Oq-q73">
                                                 <rect key="frame" x="0.0" y="98" width="101.66666666666667" height="34"/>
@@ -178,6 +184,9 @@
                                                         <integer key="value" value="10"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="tappedBlueButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="n6X-yz-LXg"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -205,16 +214,19 @@
                     <connections>
                         <outlet property="blueChanelLabel" destination="MYc-MA-dP2" id="zBH-If-Ryw"/>
                         <outlet property="blueSlider" destination="McR-AC-qIy" id="cjL-rf-wJf"/>
+                        <outlet property="blueTextField" destination="C8V-5H-USk" id="bbc-df-rZY"/>
                         <outlet property="greenChanelLabel" destination="LUE-io-7bm" id="rS2-Se-27S"/>
                         <outlet property="greenSlider" destination="bjg-aT-nCd" id="Qs0-4X-Kv7"/>
+                        <outlet property="greenTextField" destination="8Y1-It-V14" id="z9I-zu-GUa"/>
                         <outlet property="redChanelLabel" destination="T2r-gD-3xe" id="z3P-fu-hbX"/>
                         <outlet property="redSlider" destination="jRB-XN-tg5" id="Ugc-cQ-vyv"/>
+                        <outlet property="redTextField" destination="VmV-KX-Wmh" id="iYd-C1-y2l"/>
                         <outlet property="transformColorView" destination="2FH-QR-jVo" id="jnR-bz-cvW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="114.375" y="3.1690140845070425"/>
+            <point key="canvasLocation" x="112.8" y="2.9556650246305418"/>
         </scene>
     </scenes>
     <resources>

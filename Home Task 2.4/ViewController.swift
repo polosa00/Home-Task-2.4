@@ -7,8 +7,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
+    // MARK: - IBOutlets
     @IBOutlet var transformColorView: UIView!
     
     @IBOutlet var redChanelLabel: UILabel!
@@ -23,6 +24,11 @@ class ViewController: UIViewController {
     @IBOutlet var greenTextField: UITextField!
     @IBOutlet var blueTextField: UITextField!
     
+    @IBOutlet var redButton: UIButton!
+    @IBOutlet var greenButton: UIButton!
+    @IBOutlet var blueButton: UIButton!
+    
+    // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,24 +38,67 @@ class ViewController: UIViewController {
         
         setupColorValues()
         setupLabelValues()
+        
+        redTextField.isHidden = true
+        greenTextField.isHidden = true
+        blueTextField.isHidden = true
+        
+        redButton.isHidden = true
+        greenButton.isHidden = true
+        blueButton.isHidden = true
+        
     }
-    
-    @IBAction func redChanelSlider() {
+    // MARK: - IBActions
+    @IBAction private func rgbSlider() {
         setupLabelValues()
         setupColorValues()
     }
     
-    @IBAction func tappedRedButton() {
+    
+    @IBAction private func switcherForButtonsAndTF(_ sender: UISwitch) {
+        if sender.isOn {
+            redTextField.isHidden.toggle()
+            greenTextField.isHidden.toggle()
+            blueTextField.isHidden.toggle()
+            
+            redButton.isHidden.toggle()
+            greenButton.isHidden.toggle()
+            blueButton.isHidden.toggle()
+            
+            redSlider.setValue(Float.random(in: 0...255), animated: true)
+            greenSlider.setValue(Float.random(in: 0...255), animated: true)
+            blueSlider.setValue(Float.random(in: 0...255), animated: true)
+            setupColorValues()
+            
+        } else {
+            redTextField.isHidden.toggle()
+            greenTextField.isHidden.toggle()
+            blueTextField.isHidden.toggle()
+            
+            redButton.isHidden.toggle()
+            greenButton.isHidden.toggle()
+            blueButton.isHidden.toggle()
+        }
+    }
+    
+    @IBAction private func tappedRedButton() {
         guard let inputText = redTextField.text, !inputText.isEmpty else {
-            showAlert(withTitle: "Поле для ввода пустое!", andMessage: "Пожалуйста, введите данные")
+            showAlert(
+                withTitle: "TEXT FIELD IS EMPTY",
+                andMessage: "Please enter data"
+            )
             return
         }
         
         if let inputValue = redTextField.text, let floatValue = Float(inputValue) {
-            redSlider.value = floatValue
-            redChanelLabel.text = String(floatValue)
             if floatValue > 255 {
-                showAlert(withTitle: "Вы ввели значение превышающее 255!", andMessage: "Введите значение от 0 до 255")
+                showAlert(
+                    withTitle: "ATTENTION",
+                    andMessage: "Value greater than 255. Input value from 0 to 255"
+                )
+            } else {
+                redSlider.setValue(floatValue, animated: true)
+                redChanelLabel.text = String(format: "%.2f",floatValue)
             }
         }
         
@@ -59,8 +108,8 @@ class ViewController: UIViewController {
         
         if !isChanelValueValid {
             showAlert(
-                withTitle: "Неверный формат",
-                andMessage: "Введите значение от 0 до 255"
+                withTitle: "WRONG FORMAT",
+                andMessage: "Input value from 0 to 255"
             )
             return
         }
@@ -68,17 +117,24 @@ class ViewController: UIViewController {
         setupColorValues()
     }
     
-    @IBAction func tappedGreenButton() {
+    @IBAction private func tappedGreenButton() {
         guard let inputText = greenTextField.text, !inputText.isEmpty else {
-            showAlert(withTitle: "Поле для ввода пустое!", andMessage: "Пожалуйста, введите данные")
+            showAlert(
+                withTitle: "TEXT FIELD IS EMPTY",
+                andMessage: "Please enter data"
+            )
             return
         }
         
         if let inputValue = greenTextField.text, let floatValue = Float(inputValue) {
-            greenSlider.value = floatValue
-            greenChanelLabel.text = String(floatValue)
             if floatValue > 255 {
-                showAlert(withTitle: "Вы ввели значение превышающее 255!", andMessage: "Введите значение от 0 до 255")
+                showAlert(
+                    withTitle: "ATTENTION",
+                    andMessage: "Value greater than 255. Input value from 0 to 255"
+                )
+            } else {
+                greenSlider.setValue(floatValue, animated: true)
+                greenChanelLabel.text = String(format: "%.2f", floatValue)
             }
         }
         
@@ -87,23 +143,33 @@ class ViewController: UIViewController {
             .evaluate(with: inputText)
         
         if !isChanelValuePattern {
-            showAlert(withTitle: "Неверный формат", andMessage: "Введите значение от 0 до 255")
+            showAlert(
+                withTitle: "WRONG FORMAT",
+                andMessage: "Input value from 0 to 255"
+            )
         }
         
         setupColorValues()
     }
     
-    @IBAction func tappedBlueButton() {
+    @IBAction private func tappedBlueButton() {
         guard let inputText = blueTextField.text, !inputText.isEmpty else {
-            showAlert(withTitle: "Поле для ввода пустое!", andMessage: "Пожалуйста, введите данные")
+            showAlert(
+                withTitle: "TEXT FIELD IS EMPTY",
+                andMessage: "Please enter data"
+            )
             return
         }
         
         if let inputValue = blueTextField.text, let floatValue = Float(inputValue) {
-            blueSlider.value = floatValue
-            blueChanelLabel.text = String(floatValue)
             if floatValue > 255 {
-                showAlert(withTitle: "Вы ввели значение превышающее 255!", andMessage: "Введите значение от 0 до 255")
+                showAlert(
+                    withTitle: "ATTENTION",
+                    andMessage: "Value greater than 255. Input value from 0 to 255"
+                )
+            } else {
+                blueSlider.setValue(floatValue, animated: true)
+                blueChanelLabel.text = String(format: "%.2f", floatValue)
             }
         }
         
@@ -112,15 +178,18 @@ class ViewController: UIViewController {
             .evaluate(with: inputText)
         
         if !isChanelValuePattern {
-            showAlert(withTitle: "Неверный формат", andMessage: "Введите значение от 0 до 255")
+            showAlert(
+                withTitle: "WRONG FORMAT",
+                andMessage: "Input value from 0 to 255"
+            )
         }
         
         setupColorValues()
-        
     }
     
 }
 
+// MARK: - Extension for ViewController
 extension ViewController {
     private func setupLabelValues() {
         redChanelLabel.text = String(format: "%.2f", redSlider.value)
@@ -144,15 +213,16 @@ extension ViewController {
         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
             self.redTextField.text = ""
             self.redChanelLabel.text = "0.00"
-            self.redSlider.value = 0
+            self.redSlider.setValue(0, animated: true)
             
             self.greenTextField.text = ""
             self.greenChanelLabel.text = "0.00"
-            self.greenSlider.value = 0
+            self.greenSlider.setValue(0, animated: true)
             
             self.blueTextField.text = ""
             self.blueChanelLabel.text = "0.00"
-            self.blueSlider.value = 0
+            self.blueSlider.setValue(0, animated: true)
+            self.setupColorValues()
         }
         alert.addAction(okAction)
         present(alert, animated: true)
